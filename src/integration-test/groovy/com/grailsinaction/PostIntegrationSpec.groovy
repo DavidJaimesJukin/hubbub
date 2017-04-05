@@ -21,4 +21,23 @@ class PostIntegrationSpec extends Specification {
         then: "The user has a list of posts attached"
         3 == User.get(user.id).posts.size()
     }
+
+    void "Ensure posts linked to a user can be retrieved"(){
+        given: "A user with several posts"
+        def user = new User(loginId: 'joe', password: 'secret')
+        user.save(failOnError: true)
+        user.addToPosts(new Post(content: "First"))
+        user.addToPosts(new Post(content: "second"))
+        user.addToPosts(new Post(content: "third"))
+
+
+        when:"The user is retrieved by their id"
+        def foundUser= User.get(user.id)
+        def sortedPostContent= foundUser.posts.collect {
+            it.content
+        }.sort()
+
+        then: "The posts appear on the retrieved user"
+        sortedPostContent == ['First','second', 'third']
+    }
 }
