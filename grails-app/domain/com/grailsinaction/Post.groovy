@@ -10,6 +10,6 @@ class Post {
     static belongsTo = [user: User]
     static hasMany = [ tags: Tag]
     static mapping = {
-        sort datecreated:"desc"
+        tags sort: 'datecreated'
     }
 }
