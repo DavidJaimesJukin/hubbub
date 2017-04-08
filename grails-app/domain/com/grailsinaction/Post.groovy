@@ -8,8 +8,8 @@ class Post {
     }
 
     static belongsTo = [user: User]
-    static hasMany = [ tags: Tag]
+    static hasMany = [tags: Tag]
     static mapping = {
-        tags sort: 'datecreated'
+        sort datecreated: 'desc'
     }
 }

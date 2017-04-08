@@ -1,6 +1,7 @@
 package com.grailsinaction
 
 class Tag {
+
     String name
     User user
 
@@ -8,6 +9,6 @@ class Tag {
         name blank: false
     }
 
-    static hasMany = [ posts: Post]
-    static belongsTo = [ User, Post]
+    static hasMany = [posts: Post]
+    static belongsTo = [User, Post]
 }

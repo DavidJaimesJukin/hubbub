@@ -22,35 +22,34 @@ class PostIntegrationSpec extends Specification {
         3 == User.get(user.id).posts.size()
     }
 
-    void "Ensure posts linked to a user can be retrieved"(){
+    void "Ensure posts lined to a user can be retrieved"(){
         given: "A user with several posts"
         def user = new User(loginId: 'joe', password: 'secret')
-        user.save(failOnError: true)
-        user.addToPosts(new Post(content: "First"))
-        user.addToPosts(new Post(content: "second"))
-        user.addToPosts(new Post(content: "third"))
-
+        user.save(failOnError:true)
+        user.addToPosts(new Post(content: 'First'))
+        user.addToPosts(new Post(content: 'Second'))
+        user.addToPosts(new Post(content: 'Third'))
 
         when:"The user is retrieved by their id"
-        def foundUser= User.get(user.id)
-        def sortedPostContent= foundUser.posts.collect {
+        def foundUser = User.get(user.id)
+        def sortedPostContent = foundUser.posts.collect{
             it.content
         }.sort()
 
         then: "The posts appear on the retrieved user"
-        sortedPostContent == ['First','second', 'third']
+        sortedPostContent == ['First', 'Second', 'Third']
     }
 
-/*    void "Exercise tagging several posts with several tags"(){
+    void "Exercise tagging several posts with various tags"(){
         given: "A user with a set of tags"
         def user = new User(loginId: 'joe', password: 'secret')
+        user.save(failOnError: true)
         def tagGroovy = new Tag(name: 'groovy')
         def tagGrails = new Tag(name: 'grails')
         user.addToTags(tagGroovy)
         user.addToTags(tagGrails)
-        user.save(failOnError: true)
 
-        when: "The user tags two fresh posts"
+        when:"The user tags two fresh posts"
         def groovyPost = new Post(content: "A groovy post")
         user.addToPosts(groovyPost)
         groovyPost.addToTags(tagGroovy)
@@ -64,5 +63,5 @@ class PostIntegrationSpec extends Specification {
         user.tags*.name.sort() == ['grails', 'groovy']
         1 == groovyPost.tags.size()
         2 == bothPost.tags.size()
-    }*/
+    }
 }
