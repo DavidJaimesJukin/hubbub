@@ -13,6 +13,9 @@ class User {
             passwd != user.loginId
         }
 
+        tags()
+        posts()
+
         profile nullable: true
     }
 
