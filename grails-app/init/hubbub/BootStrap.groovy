@@ -22,8 +22,9 @@ class BootStrap {
     void createAdminUserIfRequired(){
         if(User.count() == 0){
             println("Fresh database creating new ADMIN user")
-            def profile = new Profile(email: "admin@yourhost.com")
-            def user = new User(loginId: 'Admin', password: 'secret', profile: profile).save()
+            def profile = new Profile(fullName: 'Adiminstrator', email: "admin@yourhost.com")
+            def user = new User(loginId: 'Admin', password: 'secret', profile: profile)
+            user.save(failOnError:true)
         } else{
             println("Existing admin user, skipping creation")
         }
