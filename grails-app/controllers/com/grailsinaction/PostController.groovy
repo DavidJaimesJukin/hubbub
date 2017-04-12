@@ -5,7 +5,7 @@ class PostController {
     static scaffold = Post
 
     def timeline(){
-        def user = User.findbyLoginId(params.id)
+        def user = User.findByLoginId(params.id)
 
         if(!user){
             response.sendError(404)
