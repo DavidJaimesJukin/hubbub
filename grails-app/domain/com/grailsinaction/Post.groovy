@@ -2,10 +2,10 @@ package com.grailsinaction
 
 class Post {
     String content
-    Date dateCreated
+    Date datecreated
     static constraints = {
         content blank: false
-        dateCreated nullable: true
+        //dateCreated nullable: true
     }
 
     static belongsTo = [user: User]
