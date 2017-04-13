@@ -33,7 +33,7 @@ class PostController {
         redirect(action: 'timeline', id: params.id)
     }
 
-    def index(){
+    def home(){
         if(!params.id){
             params.id = "chuck_norris"
         }
