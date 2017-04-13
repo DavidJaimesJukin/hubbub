@@ -33,4 +33,12 @@ class PostController {
         redirect(action: 'timeline', id: params.id)
     }
 
+    def index(){
+        if(!params.id){
+            params.id = "chuck_norris"
+        }
+
+        redirect(action: 'timeline', params: params)
+    }
+
 }
