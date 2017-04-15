@@ -59,5 +59,29 @@ class UserControllerSpec extends Specification {
         "a"     | "password" | "password"   | false            | "loginId"        | "size.toosmall"
 
     }
+
+    void "Invoking the new register action via a command object"(){
+        given: "A configured command object"
+        def urc = mockCommandObject(UserRegistrationCommand)
+        urc.with {
+            loginId = "glen_a_smith"
+            fullName = "Glen Smith"
+            email = "glen@bytecode.com"
+            password = 'password'
+            passwordRepeat = 'password'
+        }
+
+        and: "which has been validated"
+        urc.validate()
+
+        when:"the register action is invoked"
+        controller.register2(urc)
+
+        then:"the user is registered and the browser is redirected"
+        !urc.hasErrors()
+        response.redirectedUrl =='/'
+        User.count() == 1
+        Profile.count() == 1
+    }
 }
 
